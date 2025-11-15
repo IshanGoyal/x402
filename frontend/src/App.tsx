@@ -35,10 +35,12 @@ function App() {
 
     try {
       const walletInfo = await api.createWallet(userId);
+      console.log('Wallet created:', walletInfo);
       setWallet(walletInfo);
-    } catch (err) {
-      setError('Failed to create wallet');
-      console.error(err);
+    } catch (err: any) {
+      const errorMsg = err.response?.data?.error || err.message || 'Failed to create wallet';
+      setError(errorMsg);
+      console.error('Wallet creation error:', err);
     } finally {
       setLoadingWallet(false);
     }
@@ -106,11 +108,17 @@ function App() {
               Powered by x402 Payment Protocol on Base
             </p>
           </div>
-          <WalletConnect
-            wallet={wallet}
-            onConnect={handleCreateWallet}
-            isLoading={loadingWallet}
-          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ textAlign: 'right', fontSize: '11px', color: '#9ca3af' }}>
+              Last Updated<br />
+              <span style={{ fontWeight: 600, color: '#6b7280' }}>Nov 15, 2025 23:50 UTC</span>
+            </div>
+            <WalletConnect
+              wallet={wallet}
+              onConnect={handleCreateWallet}
+              isLoading={loadingWallet}
+            />
+          </div>
         </div>
       </header>
 
