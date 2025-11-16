@@ -171,7 +171,7 @@ export const StrategyCard: React.FC<StrategyCardProps> = ({
             }
           }}
         >
-          {isLoading ? 'processing payment...' : `purchase strategy • $${strategy.price} usdc`}
+          {isLoading ? 'processing payment...' : `purchase strategy • $${strategy.price} USDC`}
         </button>
       )}
 
