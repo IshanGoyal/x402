@@ -4,7 +4,7 @@ import { PaymentRequirement, PaymentPayload } from '../types';
 export class X402Client {
   private baseURL: string;
 
-  constructor(baseURL: string = 'http://localhost:3001') {
+  constructor(baseURL: string = '') {
     this.baseURL = baseURL;
   }
 
