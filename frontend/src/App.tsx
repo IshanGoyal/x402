@@ -94,9 +94,10 @@ function App() {
       {/* Header */}
       <header
         style={{
-          backgroundColor: '#000000',
+          backgroundColor: '#ffffff',
           borderBottom: '2px solid #0052FF',
-          padding: '24px 0'
+          padding: '24px 0',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
         }}
       >
         <div
@@ -110,7 +111,7 @@ function App() {
           }}
         >
           <div>
-            <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>
+            <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 700, color: '#000000', letterSpacing: '-0.02em' }}>
               crypto portfolio strategies
             </h1>
             <p style={{ margin: '8px 0 0 0', color: '#0052FF', fontSize: '14px', fontWeight: 600 }}>
@@ -118,8 +119,8 @@ function App() {
             </p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <div style={{ textAlign: 'right', fontSize: '11px', color: '#9ca3af' }}>
-              <div style={{ fontWeight: 500, color: '#e5e7eb' }}>Last Updated</div>
+            <div style={{ textAlign: 'right', fontSize: '11px', color: '#6b7280' }}>
+              <div style={{ fontWeight: 500, color: '#9ca3af' }}>Last Updated</div>
               <div style={{ fontWeight: 700, color: '#0052FF', fontFamily: 'monospace', fontSize: '12px' }}>
                 {currentTime.toLocaleTimeString('en-US', {
                   hour: '2-digit',
@@ -200,17 +201,17 @@ function App() {
         style={{
           marginTop: '80px',
           padding: '40px 24px',
-          backgroundColor: '#000000',
+          backgroundColor: '#f8f9fa',
           borderTop: '2px solid #0052FF',
           textAlign: 'center',
-          color: '#ffffff',
+          color: '#4b5563',
           fontSize: '14px'
         }}
       >
-        <p style={{ fontWeight: 600, fontSize: '15px' }}>
+        <p style={{ fontWeight: 600, fontSize: '15px', color: '#000000' }}>
           built with x402 protocol • base network • smart wallets
         </p>
-        <p style={{ marginTop: '12px', fontSize: '13px', color: '#9ca3af' }}>
+        <p style={{ marginTop: '12px', fontSize: '13px', color: '#6b7280' }}>
           demo application for educational purposes
         </p>
       </footer>
