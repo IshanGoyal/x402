@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { PortfolioStrategy, WalletInfo } from '../types';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = '/api';
 
 export const api = {
   // Get all strategies (preview)
