@@ -153,29 +153,33 @@ export const StrategyCard: React.FC<StrategyCardProps> = ({
           disabled={isLoading}
           style={{
             width: '100%',
-            padding: '12px',
+            padding: '14px',
             marginTop: '16px',
-            backgroundColor: isLoading ? '#9ca3af' : '#2563eb',
-            color: 'white',
+            backgroundColor: isLoading ? '#6b7280' : '#0052FF',
+            color: '#ffffff',
             border: 'none',
-            borderRadius: '8px',
-            fontSize: '16px',
-            fontWeight: 600,
+            borderRadius: '10px',
+            fontSize: '15px',
+            fontWeight: 700,
             cursor: isLoading ? 'not-allowed' : 'pointer',
-            transition: 'background-color 0.2s'
+            transition: 'all 0.2s',
+            textTransform: 'lowercase',
+            letterSpacing: '-0.01em'
           }}
           onMouseEnter={(e) => {
             if (!isLoading) {
-              e.currentTarget.style.backgroundColor = '#1d4ed8';
+              e.currentTarget.style.backgroundColor = '#0041cc';
+              e.currentTarget.style.transform = 'translateY(-2px)';
             }
           }}
           onMouseLeave={(e) => {
             if (!isLoading) {
-              e.currentTarget.style.backgroundColor = '#2563eb';
+              e.currentTarget.style.backgroundColor = '#0052FF';
+              e.currentTarget.style.transform = 'translateY(0)';
             }
           }}
         >
-          {isLoading ? 'Processing Payment...' : `Purchase Strategy - $${strategy.price} USDC`}
+          {isLoading ? 'processing payment...' : `purchase strategy • $${strategy.price} usdc`}
         </button>
       )}
 
@@ -183,15 +187,18 @@ export const StrategyCard: React.FC<StrategyCardProps> = ({
         <div
           style={{
             marginTop: '16px',
-            padding: '12px',
-            backgroundColor: '#d1fae5',
-            color: '#065f46',
-            borderRadius: '8px',
+            padding: '14px',
+            backgroundColor: '#000000',
+            color: '#00ff00',
+            borderRadius: '10px',
             textAlign: 'center',
-            fontWeight: 600
+            fontWeight: 700,
+            border: '2px solid #00ff00',
+            textTransform: 'lowercase',
+            letterSpacing: '-0.01em'
           }}
         >
-          ✓ Strategy Purchased - Ready to Deploy
+          ✓ strategy purchased • ready to deploy
         </div>
       )}
     </div>
