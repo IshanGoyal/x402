@@ -12,8 +12,17 @@ function App() {
   const [loadingWallet, setLoadingWallet] = useState(false);
   const [loadingStrategy, setLoadingStrategy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const userId = 'demo-user-' + Math.random().toString(36).slice(2, 9);
+
+  // Update timestamp every minute
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     loadStrategies();
@@ -35,10 +44,12 @@ function App() {
 
     try {
       const walletInfo = await api.createWallet(userId);
+      console.log('Wallet created:', walletInfo);
       setWallet(walletInfo);
-    } catch (err) {
-      setError('Failed to create wallet');
-      console.error(err);
+    } catch (err: any) {
+      const errorMsg = err.response?.data?.error || err.message || 'Failed to create wallet';
+      setError(errorMsg);
+      console.error('Wallet creation error:', err);
     } finally {
       setLoadingWallet(false);
     }
@@ -79,13 +90,13 @@ function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f3f4f6' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#ffffff' }}>
       {/* Header */}
       <header
         style={{
-          backgroundColor: 'white',
-          borderBottom: '1px solid #e5e7eb',
-          padding: '20px 0'
+          backgroundColor: '#000000',
+          borderBottom: '2px solid #0052FF',
+          padding: '24px 0'
         }}
       >
         <div
@@ -99,44 +110,57 @@ function App() {
           }}
         >
           <div>
-            <h1 style={{ margin: 0, fontSize: '28px', fontWeight: 800, color: '#111827' }}>
-              Crypto Portfolio Strategies
+            <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>
+              crypto portfolio strategies
             </h1>
-            <p style={{ margin: '4px 0 0 0', color: '#6b7280', fontSize: '14px' }}>
-              Powered by x402 Payment Protocol on Base
+            <p style={{ margin: '8px 0 0 0', color: '#0052FF', fontSize: '14px', fontWeight: 600 }}>
+              powered by x402 on base
             </p>
           </div>
-          <WalletConnect
-            wallet={wallet}
-            onConnect={handleCreateWallet}
-            isLoading={loadingWallet}
-          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ textAlign: 'right', fontSize: '11px', color: '#9ca3af' }}>
+              <div style={{ fontWeight: 500, color: '#e5e7eb' }}>Last Updated</div>
+              <div style={{ fontWeight: 700, color: '#0052FF', fontFamily: 'monospace', fontSize: '12px' }}>
+                {currentTime.toLocaleTimeString('en-US', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: true
+                })}
+              </div>
+            </div>
+            <WalletConnect
+              wallet={wallet}
+              onConnect={handleCreateWallet}
+              isLoading={loadingWallet}
+            />
+          </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 24px' }}>
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 24px', backgroundColor: '#f8f9fa' }}>
         {error && (
           <div
             style={{
-              padding: '16px',
+              padding: '16px 20px',
               marginBottom: '24px',
-              backgroundColor: '#fee2e2',
-              color: '#991b1b',
-              borderRadius: '8px',
-              border: '1px solid #fecaca'
+              backgroundColor: '#000000',
+              color: '#ffffff',
+              borderRadius: '12px',
+              border: '2px solid #0052FF',
+              fontWeight: 600
             }}
           >
             {error}
           </div>
         )}
 
-        <div style={{ marginBottom: '32px' }}>
-          <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '8px' }}>
-            Browse Strategies
+        <div style={{ marginBottom: '40px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '12px', color: '#000000', letterSpacing: '-0.02em' }}>
+            browse strategies
           </h2>
-          <p style={{ color: '#6b7280', fontSize: '16px' }}>
-            Each strategy costs $0.01 USDC. Purchase to unlock full portfolio allocations.
+          <p style={{ color: '#4b5563', fontSize: '16px', fontWeight: 500 }}>
+            each strategy costs $0.01 USDC • purchase to unlock full portfolio allocations
           </p>
         </div>
 
@@ -175,19 +199,19 @@ function App() {
       <footer
         style={{
           marginTop: '80px',
-          padding: '32px 24px',
-          backgroundColor: 'white',
-          borderTop: '1px solid #e5e7eb',
+          padding: '40px 24px',
+          backgroundColor: '#000000',
+          borderTop: '2px solid #0052FF',
           textAlign: 'center',
-          color: '#6b7280',
+          color: '#ffffff',
           fontSize: '14px'
         }}
       >
-        <p>
-          Built with x402 protocol • Base Network • Smart Wallets
+        <p style={{ fontWeight: 600, fontSize: '15px' }}>
+          built with x402 protocol • base network • smart wallets
         </p>
-        <p style={{ marginTop: '8px', fontSize: '12px' }}>
-          Demo application for educational purposes
+        <p style={{ marginTop: '12px', fontSize: '13px', color: '#9ca3af' }}>
+          demo application for educational purposes
         </p>
       </footer>
     </div>

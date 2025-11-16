@@ -30,9 +30,20 @@ router.post('/create', async (req, res) => {
     const privateKey = process.env.COINBASE_API_KEY_PRIVATE_KEY;
 
     if (!apiKeyName || !privateKey) {
-      return res.status(500).json({
-        error: 'Coinbase API credentials not configured',
-        message: 'For demo purposes, you can use a mock wallet address'
+      // No credentials - create demo wallet
+      const mockAddress = `0x${Math.random().toString(16).slice(2, 42).padEnd(40, '0')}`;
+
+      userWallets.set(userId, {
+        address: mockAddress,
+        walletId: `demo-${userId}`
+      });
+
+      return res.json({
+        address: mockAddress,
+        walletId: `demo-${userId}`,
+        network: 'base-mainnet',
+        message: 'Demo wallet created (configure Coinbase API for production)',
+        isDemoWallet: true
       });
     }
 
