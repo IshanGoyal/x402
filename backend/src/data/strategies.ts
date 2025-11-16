@@ -16,9 +16,8 @@ export const strategies: PortfolioStrategy[] = [
         address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
       }
     ],
-    rebalancingFrequency: 'N/A - Lend and hold',
     expectedAPY: '4-8%',
-    minInvestment: '10 USDC'
+    minInvestment: '$1 USDC'
   },
   {
     id: 'investooor',
@@ -49,9 +48,8 @@ export const strategies: PortfolioStrategy[] = [
         address: 'Various'
       }
     ],
-    rebalancingFrequency: 'Monthly',
     expectedAPY: '15-40%',
-    minInvestment: '50 USDC'
+    minInvestment: '$1 USDC'
   },
   {
     id: 'degen-mode',
@@ -87,9 +85,8 @@ export const strategies: PortfolioStrategy[] = [
         address: '0xAC1Bd2486aAf3B5C0fc3Fd868558b082a531B2B4'
       }
     ],
-    rebalancingFrequency: 'Weekly - follows trends',
     expectedAPY: '50-200% (or -90%)',
-    minInvestment: '20 USDC'
+    minInvestment: '$1 USDC'
   }
 ];
 
@@ -110,7 +107,6 @@ export const getStrategyPreview = (strategy: PortfolioStrategy) => {
     category: strategy.category,
     riskLevel: strategy.riskLevel,
     price: strategy.price,
-    rebalancingFrequency: strategy.rebalancingFrequency,
     expectedAPY: strategy.expectedAPY,
     minInvestment: strategy.minInvestment,
     // Don't include full allocation details

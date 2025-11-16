@@ -135,14 +135,6 @@ export const StrategyCard: React.FC<StrategyCardProps> = ({
             {strategy.minInvestment}
           </div>
         </div>
-        <div style={{ gridColumn: '1 / -1' }}>
-          <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>
-            Rebalancing
-          </div>
-          <div style={{ fontSize: '14px', fontWeight: 500 }}>
-            {strategy.rebalancingFrequency}
-          </div>
-        </div>
       </div>
 
       {isPurchased && strategy.allocation && renderAllocation(strategy.allocation)}
